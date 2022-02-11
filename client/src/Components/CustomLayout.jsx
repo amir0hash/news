@@ -1,13 +1,8 @@
 import React from "react";
 import { Layout, Menu } from "antd";
-import {
-  EditOutlined,
-  HomeOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-const { Header, Content, Sider } = Layout;
+const { Header } = Layout;
 
 function CustomLayout({ children }) {
   return (
