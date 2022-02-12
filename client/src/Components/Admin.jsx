@@ -1,12 +1,13 @@
 import { useMutation } from "@apollo/client";
 import { Button, Form, Input, message, Select } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { ADD_NEWS } from "../graphql/news.mutation";
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 function Admin() {
+  const [type, setType] = useState(1);
   const [addData] = useMutation(ADD_NEWS, {
     onError: () => {
       message.error("خطا در انجام عملیات");
@@ -17,8 +18,14 @@ function Admin() {
       variables: {
         myInput: value,
       },
+      update: () => {
+        message.success("کاربر با موفقیت درج گردید");
+      },
     });
-    message.success("کاربر با موفقیت درج گردید");
+  };
+  const handleChange = (value) => {
+    setType(value);
+    console.log(value);
   };
   return (
     <Form style={{ width: "800px" }} onFinish={onFinish}>
@@ -26,11 +33,13 @@ function Admin() {
         style={{ wight: "100px" }}
         name="type"
         label="نوع خبر"
+        initialValue={1}
         rules={[{ required: true }]}
       >
         <Select
           style={{ width: 120, float: "right", marginRight: "10px" }}
-          defaultValue={1}
+          onChange={handleChange}
+          value={type}
           placeholder="لطفا نوع خبر را انتخاب کنید"
         >
           <Option value={1}>ورزش</Option>
