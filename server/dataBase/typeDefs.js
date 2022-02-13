@@ -6,6 +6,7 @@ const NewsType = gql`
     type: Int
     title: String
     newsText: String
+    newsTime: String
   }
   input NewsInput {
     type: Int
