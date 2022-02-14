@@ -7,6 +7,7 @@ export const GET_ALL_NEWS = gql`
       type
       title
       newsText
+      newsTime
     }
   }
 `;
@@ -17,6 +18,7 @@ export const GET_NEWS = gql`
       type
       title
       newsText
+      newsTime
     }
   }
 `;

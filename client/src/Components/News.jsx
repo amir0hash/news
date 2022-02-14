@@ -1,15 +1,21 @@
 import { useQuery } from "@apollo/client";
 import { Spin } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { GET_NEWS } from "../graphql/news.query";
+import Moment from "react-moment";
 
 function News() {
-  console.log("first");
   const { newsId } = useParams();
-
+  const [newsTime, setNewsTime] = useState();
   const { data, loading } = useQuery(GET_NEWS, {
     variables: { id: newsId },
+    onCompleted: () => {
+      const time = data.news.newsTime;
+      ////////////// STRING  NOT WORKING for Date()
+      var dateTime = new Date(parseInt(time));
+      setNewsTime(dateTime.toISOString());
+    },
   });
   const SpanStyle = {
     display: "block",
@@ -27,6 +33,13 @@ function News() {
               flexDirection: "column",
             }}
           >
+            <Moment
+              style={{ marginLeft: "1300px", fontSize: "30px" }}
+              interval={30000}
+              format="YYYY/MM/DD"
+            >
+              {newsTime}
+            </Moment>
             <div style={{ display: "block" }}>
               <span style={SpanStyle}>{data.news.title}</span>
             </div>
