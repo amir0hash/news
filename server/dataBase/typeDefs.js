@@ -1,5 +1,5 @@
 import { gql } from "apollo-server-express";
-
+// chage for update data base
 const NewsType = gql`
   type News {
     _id: ID
