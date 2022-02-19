@@ -1,8 +1,8 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import mongoose from "mongoose";
-import  typeDefs  from "./dataBase/typeDefs";
-import  resolvers  from "./dataBase/resolvers";
+import { typeDefs } from "./startup/typeDefs";
+import { resolvers } from "./startup/resolvers";
 
 const db = mongoose.connection;
 
