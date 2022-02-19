@@ -1,5 +1,5 @@
-import { NewsModel } from "./news.model";
 import { AuthSchema } from "../Author/author.model";
+import { NewsModel } from "./news.model";
 
 const newsResolver = {
   Query: {
@@ -53,6 +53,7 @@ const newsResolver = {
   },
   News: {
     author: async (parent) => {
+      console.log(AuthSchema.find(parent.authorId));
       return await AuthSchema.find(parent.authorId);
     },
   },

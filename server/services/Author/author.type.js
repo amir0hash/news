@@ -5,7 +5,7 @@ const NewsType = gql`
     _id: ID
     firstname: String
     lastname: String
-    news: News
+    news: [News]
   }
   input AuthorInput {
     firstname: String

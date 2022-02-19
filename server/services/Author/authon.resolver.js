@@ -25,7 +25,7 @@ const newsResolver = {
   Author: {
     news: async (parent) => {
       console.log(parent._id);
-      return await NewsModel.find(parent._id);
+      return await NewsModel.find({ authorId: parent._id });
     },
   },
 };
