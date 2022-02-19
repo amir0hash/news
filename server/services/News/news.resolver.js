@@ -53,8 +53,7 @@ const newsResolver = {
   },
   News: {
     author: async (parent) => {
-      console.log(AuthSchema.find(parent.authorId));
-      return await AuthSchema.find(parent.authorId);
+      return await AuthSchema.findById(parent.authorId);
     },
   },
 };
