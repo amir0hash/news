@@ -23,6 +23,9 @@ function CustomLayout({ children }) {
             <Menu.Item key="4">
               <Link to="/category/eghtesad">اقتصاد</Link>
             </Menu.Item>
+            <Menu.Item key="5">
+              <Link to="/admin">admin test</Link>
+            </Menu.Item>
           </Menu>
         </Header>
         <Layout className="site-layout" style={{ marginRight: 200 }}>
