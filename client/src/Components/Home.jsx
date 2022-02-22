@@ -18,16 +18,18 @@ function Home() {
     <>
       <Spin spinning={loading}>
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            columnGap: "10px",
-            rowGap: "1em",
-          }}
+          className="row g-2"
+          // style={{
+          //   display: "grid",
+          //   gridTemplateColumns: "1fr 1fr 1fr",
+          // columnGap: "10px",
+          //   rowGap: "1em",
+          // }}
         >
           {data &&
             data.allNews.map((news) => (
               <div
+                className="col-sm-4 col-md-5 m-5"
                 style={{
                   padding: "3px",
                   backgroundColor: "gray",
