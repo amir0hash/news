@@ -1,76 +1,51 @@
-import { useMutation } from "@apollo/client";
-import { Button, Form, Input, message, Select } from "antd";
-import React, { useState } from "react";
-import { ADD_NEWS } from "../graphql/news.mutation";
+import {
+  FileTextOutlined,
+  NotificationOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Menu } from "antd";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const { Option } = Select;
-const { TextArea } = Input;
+const { SubMenu } = Menu;
 
-function Admin() {
-  const [type, setType] = useState(1);
-  const [addData] = useMutation(ADD_NEWS, {
-    onError: () => {
-      message.error("خطا در انجام عملیات");
-    },
-  });
-  const onFinish = (value) => {
-    return addData({
-      variables: {
-        myInput: value,
-      },
-      update: () => {
-        message.success("کاربر با موفقیت درج گردید");
-      },
-    });
-  };
-  const handleChange = (value) => {
-    setType(value);
-    console.log(value);
-  };
+function Admin({ children }) {
   return (
-    <Form style={{ width: "800px" }} onFinish={onFinish}>
-      <Form.Item
-        style={{ wight: "100px" }}
-        name="type"
-        label="نوع خبر"
-        initialValue={1}
-        rules={[{ required: true }]}
+    <>
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["sub1"]}
+        style={{ minHeight: "100vh", width: "250px", marginLeft: "30px" }}
       >
-        <Select
-          style={{ width: 120, float: "right", marginRight: "10px" }}
-          onChange={handleChange}
-          value={type}
-          placeholder="لطفا نوع خبر را انتخاب کنید"
-        >
-          <Option value={1}>ورزش</Option>
-          <Option value={2}>سلامت</Option>
-          <Option value={3}>اقتصاد</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item
-        label="عنوان خبر"
-        name="title"
-        rules={[{ required: true, max: "120" }]}
-      >
-        <TextArea></TextArea>
-      </Form.Item>
-      <Form.Item
-        label="متن خبر"
-        name="newsText"
-        rules={[{ required: true, min: "50", max: "3000" }]}
-      >
-        <TextArea rows={20}></TextArea>
-      </Form.Item>
-      <Form.Item>
-        <Button
-          style={{ width: 120, height: 40 }}
-          htmlType="submit"
-          type="primary"
-        >
-          ثبت خبر
-        </Button>
-      </Form.Item>
-    </Form>
+        <SubMenu key="sub1" icon={<UserOutlined />} title="Authors">
+          <Menu.Item key="1">
+            <Link to="/admin/addAuthor">افزودن نویسنده</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="/admin/authors">نویسنده ها</Link>
+          </Menu.Item>
+          <Menu.Item key="3">option3</Menu.Item>
+          <Menu.Item key="4">option4</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub2" icon={<FileTextOutlined />} title="News">
+          <Menu.Item key="5">
+            <Link to="/admin/addNews">افزودن خبر</Link>
+          </Menu.Item>
+          <Menu.Item key="6">option6</Menu.Item>
+          <Menu.Item key="7">option7</Menu.Item>
+          <Menu.Item key="8">option8</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
+          <Menu.Item key="9">option9</Menu.Item>
+          <Menu.Item key="10">option10</Menu.Item>
+          <Menu.Item key="11">option11</Menu.Item>
+          <Menu.Item key="12">option12</Menu.Item>
+        </SubMenu>
+      </Menu>
+      {children}
+      {/* <AddNewsForm /> */}
+    </>
   );
 }
 

@@ -1,13 +1,13 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
-import { GET_ALL_NEWS } from "../graphql/news.query";
+import { GET_ALL_NEWS } from "../graphql/news/news.query";
 import { Button, Spin } from "antd";
 import { useHistory } from "react-router";
 
 function Home() {
   const { push } = useHistory();
 
-  const { error, data, loading } = useQuery(GET_ALL_NEWS);
+  const { data, loading } = useQuery(GET_ALL_NEWS);
 
   const ButtonStyle = {
     float: "right",

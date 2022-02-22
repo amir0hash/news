@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { Spin } from "antd";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { GET_NEWS } from "../graphql/news.query";
+import { GET_NEWS } from "../graphql/news/news.query";
 import Moment from "react-moment";
 
 function News() {

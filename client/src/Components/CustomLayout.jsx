@@ -28,13 +28,26 @@ function CustomLayout({ children }) {
             </Menu.Item>
           </Menu>
         </Header>
-        <Layout className="site-layout" style={{ marginRight: 200 }}>
+        <Layout
+          className="site-layout"
+          style={{ marginRight: 20, float: "right" }}
+        >
           <Layout.Content
-            style={{ margin: "24px 16px 0", overflow: "initial" }}
+            style={{
+              margin: "24px 16px 0",
+              overflow: "initial",
+              float: "right",
+            }}
           >
             <div
               className="site-layout-background"
-              style={{ padding: 24, textAlign: "center" }}
+              style={{
+                padding: 24,
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+                float: "right",
+              }}
             >
               {children}
             </div>

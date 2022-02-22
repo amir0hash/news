@@ -3,7 +3,7 @@ import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Spin } from "antd";
 
-import { GET_ALL_NEWS } from "../graphql/news.query";
+import { GET_ALL_NEWS } from "../graphql/news/news.query";
 
 function Category() {
   const { push } = useHistory();
