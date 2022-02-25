@@ -1,33 +1,32 @@
-import { Divider, Space, Table, Tooltip } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, FullscreenOutlined } from "@ant-design/icons";
 import { useQuery } from "@apollo/client";
+import { Divider, Space, Table, Tooltip } from "antd";
 import React from "react";
-import { GET_AUTHORS } from "../../graphql/authors/authors.query";
-import Admin from "../Admin";
 import { useHistory } from "react-router-dom";
+import { GET_ALL_NEWS } from "../../graphql/news/news.query";
+import Admin from "../Admin";
 
-function Authors() {
-  const { push } = useHistory;
-  const { data, loading } = useQuery(GET_AUTHORS, {
+function AdminAllNews() {
+  const { push } = useHistory();
+  let adminOption = "Admin All News";
+
+  const { data, loading } = useQuery(GET_ALL_NEWS, {
     onCompleted: () => console.log(data),
+    fetchPolicy: "no-cache",
   });
+
   const columns = [
     {
-      title: "نام",
-      dataIndex: "firstname",
-    },
-    {
-      title: "نام خانوادگی",
-      dataIndex: "lastname",
+      title: "عنوان",
+      dataIndex: "title",
     },
     {
       key: "action",
       render: (text, record) => (
         <Space size="middle" split={<Divider type="vertical" />}>
-          <Tooltip title="ویراش جدید" color="purple">
-            <EditOutlined
-              onClick={() => console.log(record._id)}
-              // onClick={() => push(`/editContact/${record._id}`)}
+          <Tooltip title="نمایش نویسنده" color="purple">
+            <FullscreenOutlined
+              onClick={() => push(`/news/${record._id}`)}
               style={{ fontSize: 18, color: "#000000", cursor: "pointer" }}
             />
           </Tooltip>
@@ -42,17 +41,20 @@ function Authors() {
       width: "10%",
     },
   ];
+
   return (
-    <Admin>
+    <Admin adminOption={adminOption}>
       <Table
+        style={{ minWidth: "500px", maxWidth: "1200px" }}
+        size="large"
         loading={loading}
         size={"small"}
         rowKey={"_id"}
         columns={columns}
-        dataSource={data && data.allAuthor}
+        dataSource={data && data.allNews}
       />
     </Admin>
   );
 }
 
-export default Authors;
+export default AdminAllNews;

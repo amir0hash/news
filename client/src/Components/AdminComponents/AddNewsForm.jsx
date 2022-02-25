@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Button, Form, Input, message, Select } from "antd";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { ADD_NEWS } from "../../graphql/news/news.mutation";
 import Admin from "../Admin";
 
@@ -9,12 +10,14 @@ const { TextArea } = Input;
 
 function AddNewsForm() {
   const [type, setType] = useState(1);
+  const { authorId } = useParams();
   const [addData] = useMutation(ADD_NEWS, {
     onError: () => {
       message.error("خطا در انجام عملیات");
     },
   });
   const onFinish = (value) => {
+    value.authorId = authorId;
     return addData({
       variables: {
         myInput: value,
@@ -27,6 +30,7 @@ function AddNewsForm() {
   const handleChange = (value) => {
     setType(value);
     console.log(value);
+    console.log(authorId);
   };
   return (
     <>
@@ -54,7 +58,7 @@ function AddNewsForm() {
           <Form.Item
             label="عنوان خبر"
             name="title"
-            rules={[{ required: true, max: "120" }]}
+            rules={[{ required: true, max: "60" }]}
           >
             <TextArea></TextArea>
           </Form.Item>

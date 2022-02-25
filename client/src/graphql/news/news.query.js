@@ -19,6 +19,11 @@ export const GET_NEWS = gql`
       title
       newsText
       newsTime
+      author {
+        _id
+        firstname
+        lastname
+      }
     }
   }
 `;

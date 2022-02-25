@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
-function Admin({ children }) {
+function Admin({ children, adminOption }) {
   return (
     <>
       <Menu
@@ -25,25 +25,27 @@ function Admin({ children }) {
           <Menu.Item key="2">
             <Link to="/admin/authors">نویسنده ها</Link>
           </Menu.Item>
-          <Menu.Item key="3">option3</Menu.Item>
-          <Menu.Item key="4">option4</Menu.Item>
+          {/* <Menu.Item key="3">option3</Menu.Item>
+          <Menu.Item key="4">option4</Menu.Item> */}
         </SubMenu>
         <SubMenu key="sub2" icon={<FileTextOutlined />} title="News">
           <Menu.Item key="5">
-            <Link to="/admin/addNews">افزودن خبر</Link>
+            <Link to="/admin/news">خبر ها</Link>
           </Menu.Item>
-          <Menu.Item key="6">option6</Menu.Item>
-          <Menu.Item key="7">option7</Menu.Item>
-          <Menu.Item key="8">option8</Menu.Item>
+          {/* <Menu.Item key="6">option7</Menu.Item>
+          <Menu.Item key="7">option8</Menu.Item> */}
         </SubMenu>
-        <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-          <Menu.Item key="9">option9</Menu.Item>
-          <Menu.Item key="10">option10</Menu.Item>
-          <Menu.Item key="11">option11</Menu.Item>
-          <Menu.Item key="12">option12</Menu.Item>
-        </SubMenu>
+        {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
+          <Menu.Item key="8">option9</Menu.Item>
+          <Menu.Item key="9">option10</Menu.Item>
+          <Menu.Item key="10">option11</Menu.Item>
+          <Menu.Item key="11">option12</Menu.Item>
+        </SubMenu> */}
       </Menu>
-      {children}
+      <div>
+        <div className="display-2">{adminOption && adminOption}</div>
+        <div>{children}</div>
+      </div>
       {/* <AddNewsForm /> */}
     </>
   );

@@ -9,3 +9,30 @@ export const GET_AUTHORS = gql`
     }
   }
 `;
+
+export const GET_AUTHOR = gql`
+  query GET_AUTHOR($id: ID!) {
+    author(authorId: $id) {
+      _id
+      firstname
+      lastname
+      news {
+        title
+      }
+    }
+  }
+`;
+export const GET_AUTHOR_NEWS = gql`
+  query GET_AUTHOR($id: ID!) {
+    author(authorId: $id) {
+      _id
+      firstname
+      lastname
+      news {
+        _id
+        type
+        title
+      }
+    }
+  }
+`;
