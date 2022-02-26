@@ -18,6 +18,7 @@ const NewsType = gql`
   }
   extend type Mutation {
     addAuthor(input: AuthorInput!): Author
+    deleteAuthor(id: ID!): Boolean
   }
 `;
 

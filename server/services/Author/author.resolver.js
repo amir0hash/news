@@ -21,6 +21,21 @@ const newsResolver = {
     addAuthor: async (_, args) => {
       return await AuthSchema.create({ ...args.input, status: 1 });
     },
+    deleteAuthor: async (_, args) => {
+      try {
+        await AuthSchema.findByIdAndUpdate(
+          args.id,
+          { status: -1 },
+          {
+            new: true,
+          }
+        );
+
+        return true;
+      } catch (error) {
+        throw new Error("خطا");
+      }
+    },
   },
   Author: {
     news: async (parent) => {
